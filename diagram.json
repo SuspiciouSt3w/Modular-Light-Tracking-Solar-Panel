@@ -1,0 +1,86 @@
+{
+  "version": 1,
+  "author": "Fl DigiField",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    {
+      "type": "wokwi-stepper-motor",
+      "id": "stepper",
+      "top": -250,
+      "left": 150,
+      "attrs": { "size": "17" }
+    },
+    { "type": "wokwi-a4988", "id": "drv", "top": -150, "left": 50, "attrs": {} },
+    {
+      "type": "wokwi-photoresistor-sensor",
+      "id": "ldr_tl",
+      "top": -150.4,
+      "left": -200.8,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-photoresistor-sensor",
+      "id": "ldr_tr",
+      "top": -150,
+      "left": -100,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-photoresistor-sensor",
+      "id": "ldr_bl",
+      "top": -50,
+      "left": -200,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-photoresistor-sensor",
+      "id": "ldr_br",
+      "top": -50,
+      "left": -100,
+      "attrs": {}
+    },
+    { "type": "wokwi-ds18b20", "id": "temp", "top": 150, "left": -150, "attrs": {} },
+    { "type": "wokwi-bme280", "id": "bme", "top": 150, "left": 0, "attrs": {} },
+    { "type": "wokwi-potentiometer", "id": "pot", "top": 150, "left": 150, "attrs": {} }
+  ],
+  "connections": [
+    [ "esp:18", "drv:DIR", "green", [ "v0" ] ],
+    [ "esp:19", "drv:STEP", "blue", [ "v0" ] ],
+    [ "drv:VDD", "esp:3V3", "red", [ "v0" ] ],
+    [ "drv:GND.1", "esp:GND.1", "black", [ "v0" ] ],
+    [ "drv:VMOT", "esp:5V", "red", [ "v0" ] ],
+    [ "drv:GND.2", "esp:GND.2", "black", [ "v0" ] ],
+    [ "drv:RESET", "drv:SLEEP", "purple", [ "v0" ] ],
+    [ "drv:1B", "stepper:B-", "orange", [ "v0" ] ],
+    [ "drv:1A", "stepper:B+", "yellow", [ "v0" ] ],
+    [ "drv:2A", "stepper:A+", "green", [ "v0" ] ],
+    [ "drv:2B", "stepper:A-", "blue", [ "v0" ] ],
+    [ "esp:34", "ldr_tl:AO", "yellow", [ "v0" ] ],
+    [ "esp:35", "ldr_tr:AO", "yellow", [ "v0" ] ],
+    [ "esp:32", "ldr_bl:AO", "yellow", [ "v0" ] ],
+    [ "esp:33", "ldr_br:AO", "yellow", [ "v0" ] ],
+    [ "esp:4", "temp:DQ", "cyan", [ "v0" ] ],
+    [ "esp:21", "bme:SDA", "magenta", [ "v0" ] ],
+    [ "esp:22", "bme:SCL", "magenta", [ "v0" ] ],
+    [ "esp:25", "pot:SIG", "white", [ "v0" ] ],
+    [ "esp:GND.1", "ldr_tl:GND", "black", [ "v0" ] ],
+    [ "esp:GND.1", "ldr_tr:GND", "black", [ "v0" ] ],
+    [ "esp:GND.1", "ldr_bl:GND", "black", [ "v0" ] ],
+    [ "esp:GND.1", "ldr_br:GND", "black", [ "v0" ] ],
+    [ "esp:GND.1", "temp:GND", "black", [ "v0" ] ],
+    [ "esp:GND.1", "bme:GND", "black", [ "v0" ] ],
+    [ "esp:GND.1", "pot:GND", "black", [ "v0" ] ],
+    [ "esp:3V3", "ldr_tl:VCC", "red", [ "v0" ] ],
+    [ "esp:3V3", "ldr_tr:VCC", "red", [ "v0" ] ],
+    [ "esp:3V3", "ldr_bl:VCC", "red", [ "v0" ] ],
+    [ "esp:3V3", "ldr_br:VCC", "red", [ "v0" ] ],
+    [ "esp:3V3", "temp:VCC", "red", [ "v0" ] ],
+    [ "esp:3V3", "bme:VIN", "red", [ "v0" ] ],
+    [ "esp:3V3", "pot:VCC", "red", [ "v0" ] ],
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ]
+  ],
+  "serialMonitor": { "convertEol": true, "display": "terminal", "newline": "lf" },
+  "dependencies": {}
+}
